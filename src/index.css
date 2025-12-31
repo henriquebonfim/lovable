@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 120 100% 50%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 120 100% 50%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 120 100% 50%;
+
+    --primary: 120 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 120 100% 25%;
+    --secondary-foreground: 120 100% 50%;
+
+    --muted: 0 0% 8%;
+    --muted-foreground: 120 100% 35%;
+
+    --accent: 120 100% 60%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 0%;
+
+    --border: 120 100% 15%;
+    --input: 120 100% 15%;
+    --ring: 120 100% 50%;
+
+    --radius: 0.25rem;
+
+    --matrix-green: 120 100% 50%;
+    --matrix-dark: 0 0% 0%;
+    --terminal-green: 120 100% 35%;
+    --neon-green: 120 100% 60%;
+    --glow: 0 0 20px hsl(120 100% 50% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    background-color: #000000;
+  }
+}
+
+@layer utilities {
+  .text-matrix {
+    color: hsl(var(--matrix-green));
+    text-shadow: 0 0 10px hsl(var(--matrix-green) / 0.5);
+  }
+
+  .text-terminal {
+    color: hsl(var(--terminal-green));
+  }
+
+  .text-neon {
+    color: hsl(var(--neon-green));
+    text-shadow: 0 0 10px hsl(var(--neon-green) / 0.8);
+  }
+
+  .border-matrix {
+    border-color: hsl(var(--matrix-green) / 0.3);
+  }
+
+  .glow-matrix {
+    box-shadow: 0 0 20px hsl(var(--matrix-green) / 0.3);
+  }
+
+  .terminal-cursor::after {
+    content: '▊';
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes matrix-fall {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  .glitch {
+    animation: glitch 0.3s infinite;
+  }
+}
